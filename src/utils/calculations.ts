@@ -5,15 +5,18 @@ import { Transport, Lot, TransportStats, LotStats } from '../models/types';
  */
 export function calculateTransportStats(transport: Transport): TransportStats {
   const basketCount = transport.baskets.length;
-  const totalWeight = transport.baskets.reduce((sum, basket) => sum + basket.weight, 0);
+  const basketTotalWeight = transport.baskets.reduce((sum, basket) => sum + basket.weight, 0);
 
   // Calculate shrimp weight from regular baskets (subtract basket weight)
-  const basketShrimpWeight = totalWeight - (basketCount * transport.basketWeight);
+  const basketShrimpWeight = basketTotalWeight - (basketCount * transport.basketWeight);
 
-  // Calculate remain shrimp (ชั่งเศษ) - now includes basket weight, treat same as regular baskets
+  // Calculate remain shrimp (ชั่งเศษ) - includes basket weight, treat same as regular baskets
   const remainCount = transport.remainShrimp?.length || 0;
   const remainTotalWeight = transport.remainShrimp?.reduce((sum, remain) => sum + remain.weight, 0) || 0;
   const remainShrimpWeight = remainTotalWeight - (remainCount * transport.basketWeight);
+
+  // Total weight = regular baskets + ชั่งเศษ entries (both include basket weight)
+  const totalWeight = basketTotalWeight + remainTotalWeight;
 
   // Total shrimp weight = basket shrimp + remain shrimp
   const shrimpWeight = basketShrimpWeight + remainShrimpWeight;

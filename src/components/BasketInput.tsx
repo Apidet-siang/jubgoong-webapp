@@ -71,7 +71,7 @@ function BasketInput({ transport, onUpdateTransport }: BasketInputProps) {
           title="Toggle ชั่งเศษ Mode"
         >
           <span className="mode-icon">{isRemainMode ? '🔶' : '⬜'}</span>
-          {isRemainMode ? 'ชั่งเศษ' : 'Normal Mode'}
+          {isRemainMode ? 'ชั่งเศษ' : 'ปกติ'}
         </button>
       </div>
 
