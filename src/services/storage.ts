@@ -24,6 +24,10 @@ function deserialize(json: string): AppData {
       baskets: transport.baskets.map((basket: Basket) => ({
         ...basket,
         timestamp: new Date(basket.timestamp)
+      })),
+      remainShrimp: (transport.remainShrimp || []).map((remain: Basket) => ({
+        ...remain,
+        timestamp: new Date(remain.timestamp)
       }))
     }))
   }));

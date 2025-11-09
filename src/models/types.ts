@@ -5,6 +5,7 @@ export interface Basket {
   id: string;
   weight: number;
   timestamp: Date;
+  isRemainMode?: boolean; // True if this is remain shrimp (pure shrimp weight, no basket)
 }
 
 /**
@@ -19,6 +20,7 @@ export interface Transport {
   pricePerKg: number;
   deductionPercentage: number;
   baskets: Basket[];
+  remainShrimp: Basket[]; // Separate array for remain shrimp (pure shrimp weight entries)
 }
 
 /**
@@ -47,6 +49,8 @@ export interface TransportStats {
   totalWeight: number;
   shrimpWeight: number;
   basketCount: number;
+  remainCount: number;
+  remainWeight: number;
   basePrice: number;
   deduction: number;
   finalPrice: number;

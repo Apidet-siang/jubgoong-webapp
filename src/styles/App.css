@@ -1029,3 +1029,133 @@
   font-size: 13px;
   color: #92400e;
 }
+
+/* Remain Mode Styles */
+.basket-input-section.remain-mode {
+  border-left: 4px solid #f97316;
+}
+
+.input-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.btn-mode-toggle {
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: 2px solid #e5e7eb;
+  background-color: white;
+  color: #6b7280;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.btn-mode-toggle:hover {
+  border-color: #d1d5db;
+  background-color: #f9fafb;
+}
+
+.btn-mode-toggle.active {
+  background-color: #fed7aa;
+  border-color: #f97316;
+  color: #9a3412;
+}
+
+.mode-icon {
+  font-size: 16px;
+}
+
+.remain-mode-info {
+  padding: 10px;
+  background-color: #ffedd5;
+  border-left: 3px solid #f97316;
+  border-radius: 4px;
+  margin-bottom: 12px;
+  color: #9a3412;
+}
+
+.btn-remain {
+  background-color: #f97316;
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-remain:hover {
+  background-color: #ea580c;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(249, 115, 22, 0.3);
+}
+
+.btn-remain:active {
+  transform: translateY(0);
+}
+
+/* Remain Shrimp List Styles */
+.remain-section-title {
+  color: #f97316;
+  margin-top: 24px;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.remain-list {
+  background-color: #fff7ed;
+  border: 1px solid #fed7aa;
+  border-radius: 8px;
+  padding: 12px;
+}
+
+.remain-item {
+  background-color: white;
+  border-left: 4px solid #f97316 !important;
+}
+
+.remain-number {
+  background-color: #f97316 !important;
+  color: white !important;
+}
+
+.remain-weight {
+  color: #ea580c;
+  font-weight: 600;
+}
+
+.remain-weight small {
+  color: #9a3412;
+  font-size: 11px;
+  font-weight: normal;
+  margin-left: 4px;
+}
+
+.remain-note {
+  color: #9a3412;
+  background-color: #ffedd5;
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-size: 12px;
+  margin-top: 8px;
+}
+
+/* Remain stat in transport card */
+.remain-stat .stat-label {
+  color: #f97316;
+}
+
+.remain-stat .stat-value {
+  color: #ea580c;
+}

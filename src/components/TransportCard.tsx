@@ -55,6 +55,12 @@ function TransportCard({ transport, onClick, selectionMode, isSelected, onToggle
           <span className="stat-label">Baskets</span>
           <span className="stat-value">{stats.basketCount}</span>
         </div>
+        {stats.remainCount > 0 && (
+          <div className="stat remain-stat">
+            <span className="stat-label">🔶 Remain</span>
+            <span className="stat-value">{stats.remainCount} ({formatWeight(stats.remainWeight)})</span>
+          </div>
+        )}
         <div className="stat">
           <span className="stat-label">Total Weight</span>
           <span className="stat-value">{formatWeight(stats.totalWeight)}</span>

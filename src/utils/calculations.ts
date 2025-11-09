@@ -6,7 +6,16 @@ import { Transport, Lot, TransportStats, LotStats } from '../models/types';
 export function calculateTransportStats(transport: Transport): TransportStats {
   const basketCount = transport.baskets.length;
   const totalWeight = transport.baskets.reduce((sum, basket) => sum + basket.weight, 0);
-  const shrimpWeight = totalWeight - (basketCount * transport.basketWeight);
+
+  // Calculate shrimp weight from regular baskets (subtract basket weight)
+  const basketShrimpWeight = totalWeight - (basketCount * transport.basketWeight);
+
+  // Calculate remain shrimp weight (already pure shrimp weight, no basket)
+  const remainCount = transport.remainShrimp?.length || 0;
+  const remainWeight = transport.remainShrimp?.reduce((sum, remain) => sum + remain.weight, 0) || 0;
+
+  // Total shrimp weight = basket shrimp + remain shrimp
+  const shrimpWeight = basketShrimpWeight + remainWeight;
 
   const basePrice = shrimpWeight * transport.pricePerKg;
   const deduction = basePrice * (transport.deductionPercentage / 100);
@@ -16,6 +25,8 @@ export function calculateTransportStats(transport: Transport): TransportStats {
     totalWeight,
     shrimpWeight,
     basketCount,
+    remainCount,
+    remainWeight,
     basePrice,
     deduction,
     finalPrice

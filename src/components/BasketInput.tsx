@@ -9,6 +9,7 @@ interface BasketInputProps {
 
 function BasketInput({ transport, onUpdateTransport }: BasketInputProps) {
   const [manualWeight, setManualWeight] = useState('');
+  const [isRemainMode, setIsRemainMode] = useState(false);
 
   const addBasket = (weight: number) => {
     if (weight <= 0) return;
@@ -16,13 +17,23 @@ function BasketInput({ transport, onUpdateTransport }: BasketInputProps) {
     const newBasket: Basket = {
       id: generateId(),
       weight,
-      timestamp: new Date()
+      timestamp: new Date(),
+      isRemainMode
     };
 
-    onUpdateTransport({
-      ...transport,
-      baskets: [...transport.baskets, newBasket]
-    });
+    if (isRemainMode) {
+      // Add to remain shrimp array
+      onUpdateTransport({
+        ...transport,
+        remainShrimp: [...transport.remainShrimp, newBasket]
+      });
+    } else {
+      // Add to regular baskets array
+      onUpdateTransport({
+        ...transport,
+        baskets: [...transport.baskets, newBasket]
+      });
+    }
   };
 
   const handleManualAdd = () => {
@@ -51,8 +62,24 @@ function BasketInput({ transport, onUpdateTransport }: BasketInputProps) {
   };
 
   return (
-    <div className="basket-input-section">
-      <h5>Add Basket</h5>
+    <div className={`basket-input-section ${isRemainMode ? 'remain-mode' : ''}`}>
+      <div className="input-header">
+        <h5>{isRemainMode ? 'Add Remain Shrimp' : 'Add Basket'}</h5>
+        <button
+          className={`btn-mode-toggle ${isRemainMode ? 'active' : ''}`}
+          onClick={() => setIsRemainMode(!isRemainMode)}
+          title="Toggle Remain Mode"
+        >
+          <span className="mode-icon">{isRemainMode ? '🔶' : '⬜'}</span>
+          {isRemainMode ? 'Remain Mode' : 'Normal Mode'}
+        </button>
+      </div>
+
+      {isRemainMode && (
+        <div className="remain-mode-info">
+          <small>💡 Remain mode: Enter pure shrimp weight (no basket weight)</small>
+        </div>
+      )}
 
       <div className="input-row">
         <div className="manual-input">
@@ -65,8 +92,11 @@ function BasketInput({ transport, onUpdateTransport }: BasketInputProps) {
             placeholder={transport.autoDecimalMode ? "Enter digits (e.g., 567)" : "Enter weight"}
             className="form-input"
           />
-          <button className="btn-primary" onClick={handleManualAdd}>
-            Add
+          <button
+            className={isRemainMode ? "btn-remain" : "btn-primary"}
+            onClick={handleManualAdd}
+          >
+            {isRemainMode ? 'Add Remain' : 'Add'}
           </button>
         </div>
 
@@ -78,6 +108,7 @@ function BasketInput({ transport, onUpdateTransport }: BasketInputProps) {
       {transport.autoDecimalMode && manualWeight && (
         <div className="auto-decimal-preview">
           Preview: {convertAutoDecimal(manualWeight).toFixed(2)} kg
+          {isRemainMode && ' (pure shrimp)'}
         </div>
       )}
     </div>

@@ -73,7 +73,8 @@ function App() {
       autoDecimalMode: false,
       pricePerKg: 0,
       deductionPercentage: 0,
-      baskets: []
+      baskets: [],
+      remainShrimp: [] // Initialize remain shrimp array
     };
 
     const updatedLot = {

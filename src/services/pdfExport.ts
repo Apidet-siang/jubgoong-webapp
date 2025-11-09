@@ -90,6 +90,15 @@ export function exportLotAsPDF(lot: Lot): void {
     yPosition += 5;
     doc.text(`Baskets: ${transportStats.basketCount} | Total: ${formatWeight(transportStats.totalWeight)} | Shrimp: ${formatWeight(transportStats.shrimpWeight)}`, margin + 5, yPosition);
     yPosition += 5;
+
+    // Show remain shrimp if exists
+    if (transportStats.remainCount > 0) {
+      doc.setFont('helvetica', 'italic');
+      doc.text(`Remain Shrimp: ${transportStats.remainCount} entries | ${formatWeight(transportStats.remainWeight)} (pure shrimp)`, margin + 5, yPosition);
+      yPosition += 5;
+      doc.setFont('helvetica', 'normal');
+    }
+
     doc.text(`Price/kg: ${formatCurrency(transport.pricePerKg)} | Deduction: ${transport.deductionPercentage}%`, margin + 5, yPosition);
     yPosition += 5;
     doc.text(`Base Price: ${formatCurrency(transportStats.basePrice)} | Deduction: ${formatCurrency(transportStats.deduction)} | Final: ${formatCurrency(transportStats.finalPrice)}`, margin + 5, yPosition);
