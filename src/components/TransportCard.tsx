@@ -57,7 +57,7 @@ function TransportCard({ transport, onClick, selectionMode, isSelected, onToggle
         </div>
         {stats.remainCount > 0 && (
           <div className="stat remain-stat">
-            <span className="stat-label">🔶 Remain</span>
+            <span className="stat-label">🔶 ชั่งเศษ</span>
             <span className="stat-value">{stats.remainCount} ({formatWeight(stats.remainWeight)})</span>
           </div>
         )}

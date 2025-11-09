@@ -21,7 +21,7 @@ function BasketList({ transport, onUpdateTransport }: BasketListProps) {
   };
 
   const handleDeleteRemain = (remainId: string) => {
-    if (confirm('Delete this remain shrimp entry?')) {
+    if (confirm('Delete this ชั่งเศษ entry?')) {
       onUpdateTransport({
         ...transport,
         remainShrimp: transport.remainShrimp.filter(r => r.id !== remainId)
@@ -67,7 +67,7 @@ function BasketList({ transport, onUpdateTransport }: BasketListProps) {
   if (!hasBaskets && !hasRemainShrimp) {
     return (
       <div className="baskets-section">
-        <h5>Baskets & Remain Shrimp</h5>
+        <h5>Baskets & ชั่งเศษ</h5>
         <div className="empty-baskets">
           <p>No entries added yet</p>
         </div>
@@ -154,11 +154,11 @@ function BasketList({ transport, onUpdateTransport }: BasketListProps) {
         </>
       )}
 
-      {/* Remain Shrimp */}
+      {/* ชั่งเศษ */}
       {hasRemainShrimp && (
         <>
           <h5 className="remain-section-title">
-            🔶 Remain Shrimp ({transport.remainShrimp.length} entries)
+            🔶 ชั่งเศษ ({transport.remainShrimp.length} entries)
           </h5>
           <div className="basket-list remain-list">
             {recentRemainShrimp.map((remain, index) => {
@@ -167,7 +167,7 @@ function BasketList({ transport, onUpdateTransport }: BasketListProps) {
 
               return (
                 <div key={remain.id} className="basket-item remain-item">
-                  <span className="basket-number remain-number">R{actualIndex}</span>
+                  <span className="basket-number remain-number">ช{actualIndex}</span>
 
                   {isEditing ? (
                     <div className="basket-edit">
@@ -197,7 +197,7 @@ function BasketList({ transport, onUpdateTransport }: BasketListProps) {
                   ) : (
                     <>
                       <span className="basket-weight remain-weight">
-                        {formatWeight(remain.weight)} <small>(pure shrimp)</small>
+                        {formatWeight(remain.weight)}
                       </span>
                       <span className="basket-time">{formatDate(remain.timestamp)}</span>
                       <div className="basket-actions">
@@ -225,7 +225,7 @@ function BasketList({ transport, onUpdateTransport }: BasketListProps) {
 
           {transport.remainShrimp.length > 3 && (
             <p className="basket-list-note remain-note">
-              Showing last 3 of {transport.remainShrimp.length} remain shrimp entries
+              Showing last 3 of {transport.remainShrimp.length} ชั่งเศษ entries
             </p>
           )}
         </>

@@ -5,7 +5,7 @@ export interface Basket {
   id: string;
   weight: number;
   timestamp: Date;
-  isRemainMode?: boolean; // True if this is remain shrimp (pure shrimp weight, no basket)
+  isRemainMode?: boolean; // True if this is ชั่งเศษ (includes basket weight like normal baskets)
 }
 
 /**

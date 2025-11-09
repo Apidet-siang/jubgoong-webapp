@@ -10,12 +10,13 @@ export function calculateTransportStats(transport: Transport): TransportStats {
   // Calculate shrimp weight from regular baskets (subtract basket weight)
   const basketShrimpWeight = totalWeight - (basketCount * transport.basketWeight);
 
-  // Calculate remain shrimp weight (already pure shrimp weight, no basket)
+  // Calculate remain shrimp (ชั่งเศษ) - now includes basket weight, treat same as regular baskets
   const remainCount = transport.remainShrimp?.length || 0;
-  const remainWeight = transport.remainShrimp?.reduce((sum, remain) => sum + remain.weight, 0) || 0;
+  const remainTotalWeight = transport.remainShrimp?.reduce((sum, remain) => sum + remain.weight, 0) || 0;
+  const remainShrimpWeight = remainTotalWeight - (remainCount * transport.basketWeight);
 
   // Total shrimp weight = basket shrimp + remain shrimp
-  const shrimpWeight = basketShrimpWeight + remainWeight;
+  const shrimpWeight = basketShrimpWeight + remainShrimpWeight;
 
   const basePrice = shrimpWeight * transport.pricePerKg;
   const deduction = basePrice * (transport.deductionPercentage / 100);
@@ -26,7 +27,7 @@ export function calculateTransportStats(transport: Transport): TransportStats {
     shrimpWeight,
     basketCount,
     remainCount,
-    remainWeight,
+    remainWeight: remainTotalWeight,
     basePrice,
     deduction,
     finalPrice

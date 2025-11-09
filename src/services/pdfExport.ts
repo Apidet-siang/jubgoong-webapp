@@ -91,10 +91,10 @@ export function exportLotAsPDF(lot: Lot): void {
     doc.text(`Baskets: ${transportStats.basketCount} | Total: ${formatWeight(transportStats.totalWeight)} | Shrimp: ${formatWeight(transportStats.shrimpWeight)}`, margin + 5, yPosition);
     yPosition += 5;
 
-    // Show remain shrimp if exists
+    // Show ชั่งเศษ if exists
     if (transportStats.remainCount > 0) {
       doc.setFont('helvetica', 'italic');
-      doc.text(`Remain Shrimp: ${transportStats.remainCount} entries | ${formatWeight(transportStats.remainWeight)} (pure shrimp)`, margin + 5, yPosition);
+      doc.text(`ชั่งเศษ: ${transportStats.remainCount} entries | ${formatWeight(transportStats.remainWeight)}`, margin + 5, yPosition);
       yPosition += 5;
       doc.setFont('helvetica', 'normal');
     }
