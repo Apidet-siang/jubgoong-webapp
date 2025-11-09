@@ -51,6 +51,7 @@ export interface TransportStats {
   basketCount: number;
   remainCount: number;
   remainWeight: number;
+  remainShrimpWeight: number;
   basePrice: number;
   deduction: number;
   finalPrice: number;

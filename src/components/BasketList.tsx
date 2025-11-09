@@ -196,9 +196,14 @@ function BasketList({ transport, onUpdateTransport }: BasketListProps) {
                     </div>
                   ) : (
                     <>
-                      <span className="basket-weight remain-weight">
-                        {formatWeight(remain.weight)}
-                      </span>
+                      <div className="basket-weight-info">
+                        <span className="basket-weight remain-weight">
+                          {formatWeight(remain.weight - transport.basketWeight)} <small className="shrimp-only-label">shrimp</small>
+                        </span>
+                        <span className="basket-weight-total">
+                          ({formatWeight(remain.weight)} total)
+                        </span>
+                      </div>
                       <span className="basket-time">{formatDate(remain.timestamp)}</span>
                       <div className="basket-actions">
                         <button

@@ -63,51 +63,40 @@ function BasketInput({ transport, onUpdateTransport }: BasketInputProps) {
 
   return (
     <div className={`basket-input-section ${isRemainMode ? 'remain-mode' : ''}`}>
-      <div className="input-header">
-        <h5>{isRemainMode ? 'ชั่งเศษ' : 'Add Basket'}</h5>
+      <div className="input-row-compact">
         <button
           className={`btn-mode-toggle ${isRemainMode ? 'active' : ''}`}
           onClick={() => setIsRemainMode(!isRemainMode)}
           title="Toggle ชั่งเศษ Mode"
         >
-          <span className="mode-icon">{isRemainMode ? '🔶' : '⬜'}</span>
-          {isRemainMode ? 'ชั่งเศษ' : 'ปกติ'}
+          {isRemainMode ? '🔶 ชั่งเศษ' : '⬜ ปกติ'}
         </button>
-      </div>
 
-      {isRemainMode && (
-        <div className="remain-mode-info">
-          <small>💡 ชั่งเศษ mode: Enter total weight (includes basket weight)</small>
-        </div>
-      )}
+        <input
+          type={transport.autoDecimalMode ? 'text' : 'number'}
+          step="0.01"
+          value={manualWeight}
+          onChange={(e) => setManualWeight(e.target.value)}
+          onKeyPress={handleKeyPress}
+          placeholder={transport.autoDecimalMode ? "567" : "Weight"}
+          className="form-input-compact"
+        />
 
-      <div className="input-row">
-        <div className="manual-input">
-          <input
-            type={transport.autoDecimalMode ? 'text' : 'number'}
-            step="0.01"
-            value={manualWeight}
-            onChange={(e) => setManualWeight(e.target.value)}
-            onKeyPress={handleKeyPress}
-            placeholder={transport.autoDecimalMode ? "Enter digits (e.g., 567)" : "Enter weight"}
-            className="form-input"
-          />
-          <button
-            className={isRemainMode ? "btn-remain" : "btn-primary"}
-            onClick={handleManualAdd}
-          >
-            {isRemainMode ? 'เพิ่มชั่งเศษ' : 'Add'}
-          </button>
-        </div>
+        <button
+          className={isRemainMode ? "btn-add-remain" : "btn-add"}
+          onClick={handleManualAdd}
+        >
+          Add
+        </button>
 
-        <button className="btn-quick-add" onClick={handleQuickAdd}>
-          Quick Add {transport.quickAddWeight} kg
+        <button className="btn-quick" onClick={handleQuickAdd} title={`Quick add ${transport.quickAddWeight} kg`}>
+          ⚡ {transport.quickAddWeight}
         </button>
       </div>
 
       {transport.autoDecimalMode && manualWeight && (
-        <div className="auto-decimal-preview">
-          Preview: {convertAutoDecimal(manualWeight).toFixed(2)} kg
+        <div className="preview-text">
+          → {convertAutoDecimal(manualWeight).toFixed(2)} kg
         </div>
       )}
     </div>

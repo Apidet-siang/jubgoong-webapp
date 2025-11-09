@@ -425,7 +425,7 @@
 
 /* Basket Input */
 .basket-input-section {
-  padding: 16px;
+  padding: 12px;
   background-color: #f8fafc;
   border-radius: 8px;
 }
@@ -434,6 +434,106 @@
   font-size: 16px;
   margin-bottom: 12px;
   color: var(--text-primary);
+}
+
+/* Compact Input Row */
+.input-row-compact {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.form-input-compact {
+  flex: 1;
+  min-width: 100px;
+  padding: 10px 12px;
+  border: 2px solid var(--border-color);
+  border-radius: 6px;
+  font-size: 16px;
+}
+
+.form-input-compact:focus {
+  outline: none;
+  border-color: var(--primary-color);
+}
+
+.btn-mode-toggle {
+  padding: 8px 16px;
+  background-color: white;
+  border: 2px solid var(--border-color);
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-mode-toggle.active {
+  background-color: #fed7aa;
+  border-color: #f97316;
+  color: #9a3412;
+}
+
+.btn-add, .btn-add-remain {
+  padding: 10px 24px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s;
+}
+
+.btn-add {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.btn-add-remain {
+  background-color: #f97316;
+  color: white;
+}
+
+.btn-quick {
+  padding: 10px 16px;
+  background-color: var(--success-color);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-quick:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.preview-text {
+  margin-top: 8px;
+  font-size: 14px;
+  color: var(--success-color);
+  font-weight: 500;
+}
+
+.shrimp-only-label {
+  color: var(--text-secondary);
+  font-size: 12px;
+  margin-left: 4px;
+}
+
+.basket-weight-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.basket-weight-total {
+  font-size: 12px;
+  color: var(--text-secondary);
 }
 
 .input-row {

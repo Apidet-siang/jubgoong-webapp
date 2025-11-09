@@ -31,6 +31,7 @@ export function calculateTransportStats(transport: Transport): TransportStats {
     basketCount,
     remainCount,
     remainWeight: remainTotalWeight,
+    remainShrimpWeight,
     basePrice,
     deduction,
     finalPrice
